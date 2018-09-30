@@ -70,7 +70,7 @@
                   @else
                       <li class="nav-item dropdown">
                           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                              <img style="vertical-align:middle" src="{{ Gravatar::src(Auth::user()->email, 20) }}"> {{ Auth::user()->name }} <span class="caret"></span>
+                              <img style="vertical-align:middle" class="user-picture" src="{{ Gravatar::src(Auth::user()->email, 20) }}"> {{ Auth::user()->name }} <span class="caret"></span>
                           </a>
 
                           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

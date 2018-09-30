@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-          
+
           @if (Auth::user()->teams->isEmpty())
             <p>To start sharing articles or blog post, you have to create a team or join one !</p>
             <p><a class="btn btn-hg btn-primary" href="{{ route('team.add') }}" role="button">Create a new Team</a> or <a class="btn btn-md btn-primary" href="{{ route('team.join') }}" role="button">Join a Team</a><p>
@@ -43,7 +43,7 @@
             @foreach($links as $link)
             <li class="link-row" style="position:relative">
                 <p style="margin-left: 65px;">
-                  <img src="{{ Gravatar::src($link->user()->first()->email, 50) }}">
+                  <img class="user-picture" src="{{ Gravatar::src($link->user()->first()->email, 50) }}">
                   <a class="link-title" target="_blank" href="{{ $link->url }}">{{ $link->title }} <span class="link-url">({{str_limit($link->url, 50)}})</span></a> <br/>
                   <span class="link-description">{{str_limit($link->description, 300)}}</span><br/>
                   <span class="link-info">Added {{\Carbon\Carbon::parse($link->created_at)->diffForHumans()}} by <strong>{{$link->user()->first()->name}}</strong></span>
