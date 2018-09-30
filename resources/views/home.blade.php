@@ -2,21 +2,21 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+    <div class="row">
+        <div class="col-md-12">
+          @if (session('status'))
+              <div class="alert alert-success" role="alert">
+                  {{ session('status') }}
+              </div>
+          @endif
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+          <h3>Welcome {{Auth::user()->name}}</h3>
+          @if (Auth::user()->teams->isEmpty())
+            <p>To start sharing articles or blog post, you have to create a team or join one !</p>
+            <p><a class="btn btn-hg btn-primary" href="{{ route('team.add') }}" role="button">Create a new Team</a> or <a class="btn btn-md btn-primary" href="{{ route('team.join') }}" role="button">Join a Team</a><p>
+          @endif
 
-                    You are logged in!
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

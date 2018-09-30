@@ -21,3 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/team', 'TeamsController@add')->name('team.add');
+Route::post('/team', 'TeamsController@create');
+Route::get('/join', 'TeamsController@join')->name('team.join');

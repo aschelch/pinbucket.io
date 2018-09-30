@@ -35,7 +35,13 @@
                 </a>
               </div>
               <div class="navbar-collapse collapse">
-
+                <ul class="nav navbar-nav">
+                  @foreach(Auth::user()->teams as $team)
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('home', $team->id) }}">{{ $team->name }}</a>
+                  </li>
+                  @endforeach
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                   <!-- Authentication Links -->
                   @guest
