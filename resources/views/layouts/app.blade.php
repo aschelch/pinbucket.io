@@ -30,7 +30,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                   <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ Auth::check() ? url('home') : url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
               </div>
