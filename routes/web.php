@@ -22,8 +22,10 @@ Auth::routes();
 
 Route::get('/home/{team?}', 'HomeController@index')->name('home');
 
+Route::get('/teams', 'TeamsController@index')->name('team.index');
 Route::get('/team', 'TeamsController@add')->name('team.add');
 Route::post('/team', 'TeamsController@create');
 Route::get('/join', 'TeamsController@join')->name('team.join');
+Route::post('/join', 'TeamsController@joining');
 
 Route::post('/link', 'LinksController@create');

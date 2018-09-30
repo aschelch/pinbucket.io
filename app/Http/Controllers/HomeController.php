@@ -38,7 +38,7 @@ class HomeController extends Controller
       }
 
       if($team){
-        $links = $team->links()->latest('created_at')->get();
+        $links = $team->links()->latest('created_at')->paginate(50);
       }else{
         $links = null;
       }

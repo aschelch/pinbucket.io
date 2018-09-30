@@ -39,7 +39,7 @@
                 <ul class="nav navbar-nav">
                   @auth
                   @foreach(Auth::user()->teams as $userTeam)
-                  <li class="nav-item {{ ($userTeam->id == $team->id) ? 'active':'' }}">
+                  <li class="nav-item {{ (isset($team) && $userTeam->id == $team->id) ? 'active':'' }}">
                       <a class="nav-link" href="{{ route('home', $userTeam->id) }}">{{ $userTeam->name }}</a>
                   </li>
                   @endforeach
@@ -59,10 +59,13 @@
                   @else
                       <li class="nav-item dropdown">
                           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                              {{ Auth::user()->name }} <span class="caret"></span>
+                              <img style="vertical-align:middle" src="{{ Gravatar::src(Auth::user()->email, 20) }}"> {{ Auth::user()->name }} <span class="caret"></span>
                           </a>
 
                           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('team.index') }}">{{ __('Teams') }}</a>
+                            </li>
                             <li>
 
                               <a class="dropdown-item" href="{{ route('logout') }}"
@@ -84,6 +87,17 @@
           </div>
 
         <main class="py-4">
+
+
+          @if (session('status'))
+          <div class="container">
+              <div class="row">
+              <div class="alert alert-success" role="alert">
+                  {{ session('status') }}
+              </div>
+            </div>
+          <div>
+          @endif
             @yield('content')
         </main>
     </div>

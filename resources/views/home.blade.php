@@ -5,12 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-          @if (session('status'))
-              <div class="alert alert-success" role="alert">
-                  {{ session('status') }}
-              </div>
-          @endif
-
+          
           @if (Auth::user()->teams->isEmpty())
             <p>To start sharing articles or blog post, you have to create a team or join one !</p>
             <p><a class="btn btn-hg btn-primary" href="{{ route('team.add') }}" role="button">Create a new Team</a> or <a class="btn btn-md btn-primary" href="{{ route('team.join') }}" role="button">Join a Team</a><p>
@@ -20,12 +15,15 @@
       </div>
 
       @if (!Auth::user()->teams->isEmpty())
+
+
+
       <div class="row">
         <form method="POST" action="/link">
           <div class="col-lg-12">
             <div class="form-group">
               <div class="input-group">
-                <input type="url" name="url" class="form-control" placeholder="Share a link to the team https://..." />
+                <input type="url" name="url" class="form-control" placeholder="Share a link with the team https://..." />
                 <input type="hidden" name="team_id" value="{{$team->id}}" />
                 <span class="input-group-btn">
                   <button type="submit" class="btn btn-default">Share the link</button>
@@ -53,6 +51,8 @@
             </li>
             @endforeach
           </ul>
+
+          {{$links->render()}}
 
         </div>
     </div>

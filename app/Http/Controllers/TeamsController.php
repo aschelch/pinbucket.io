@@ -14,6 +14,11 @@ class TeamsController extends Controller
     $this->middleware('auth');
   }
 
+  public function index()
+  {
+    return view('teams.index');
+  }
+
   public function add()
   {
     return view('teams.add');
@@ -31,4 +36,20 @@ class TeamsController extends Controller
 
     return redirect('home');
   }
+
+  public function join(Request $request)
+  {
+      return view('teams.join');
+  }
+
+  public function joining(Request $request){
+      $team = Team::where('token', $request->token)->first();
+
+      if(!empty($team)){
+        $team->users()->attach(Auth::id());
+        return redirect('home');
+      }
+      return view('teams.join');
+  }
+
 }
