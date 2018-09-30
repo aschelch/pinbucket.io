@@ -32,4 +32,8 @@ class User extends Authenticatable
     {
       return $this->belongsToMany(Team::class);
     }
+
+    public function links(){
+      return $this->hasMany(Link::class);
+    }
 }

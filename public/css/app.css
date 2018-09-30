@@ -1,0 +1,31 @@
+img {
+    border-radius: 50%;
+}
+.link-row{
+  padding: 10px;
+}
+.link-row:nth-child(even){
+  background-color: #ECF0F1;
+}
+.link-url{
+  color:#7f8c8d;
+  font-weight: normal;
+  font-size: 0.8em;
+}
+.link-info{
+  color: #bdc3c7;
+  font-size: 0.8em;
+}
+.link-title{
+  font-weight: bold;
+}
+.link-description{
+  color: #7f8c8d;
+  font-size: 0.9em;
+  line-height: 17px;
+}
+.link-row img{
+  position:absolute;
+  top: 10px;
+  left:10px;
+}

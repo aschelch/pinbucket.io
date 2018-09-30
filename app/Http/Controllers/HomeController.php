@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Link;
+use App\Team;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +24,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($teamId = null)
     {
-        return view('home');
+
+      if($teamId){
+        $team = Team::find($teamId);
+
+        if( ! $team->users->contains(Auth::id())){
+          return redirect('home');
+        }
+      }else{
+        $team = Auth::user()->teams->first();
+      }
+
+      if($team){
+        $links = $team->links()->latest('created_at')->get();
+      }else{
+        $links = null;
+      }
+      return view('home', compact('team', 'links'));
     }
 }

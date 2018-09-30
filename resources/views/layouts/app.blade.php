@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/flat-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -37,9 +38,9 @@
               <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                   @auth
-                  @foreach(Auth::user()->teams as $team)
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('home', $team->id) }}">{{ $team->name }}</a>
+                  @foreach(Auth::user()->teams as $userTeam)
+                  <li class="nav-item {{ ($userTeam->id == $team->id) ? 'active':'' }}">
+                      <a class="nav-link" href="{{ route('home', $userTeam->id) }}">{{ $userTeam->name }}</a>
                   </li>
                   @endforeach
                   @endauth

@@ -9,21 +9,26 @@ use App\Team;
 
 class TeamsController extends Controller
 {
-    public function add()
-    {
-      return view('teams.add');
-    }
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
 
-    public function create(Request $request)
-    {
-      $team = new Team();
-      $team->name = $request->name;
-      $team->token = Str::random(32);
-      $team->owner_id = Auth::id();
-      $team->save();
+  public function add()
+  {
+    return view('teams.add');
+  }
 
-      $team->members()->attach(Auth::id());
+  public function create(Request $request)
+  {
+    $team = new Team();
+    $team->name = $request->name;
+    $team->token = Str::random(32);
+    $team->owner_id = Auth::id();
+    $team->save();
 
-      return redirect('home');
-    }
+    $team->users()->attach(Auth::id());
+
+    return redirect('home');
+  }
 }
