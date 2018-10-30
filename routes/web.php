@@ -29,3 +29,4 @@ Route::get('/join', 'TeamsController@join')->name('team.join');
 Route::post('/join', 'TeamsController@joining');
 
 Route::post('/link', 'LinksController@create');
+Route::delete('/link', 'LinksController@destroy')->name('link.destroy');

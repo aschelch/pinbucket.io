@@ -42,12 +42,25 @@
           <ul class="list-unstyled link-list">
             @foreach($links as $link)
             <li class="link-row" style="position:relative">
+              {{ Form::open(['method' => 'DELETE', 'route' => 'link.destroy', 'class' => 'link-destroy' ]) }}
+
                 <p style="margin-left: 65px;">
                   <img class="user-picture" src="{{ Gravatar::src($link->user()->first()->email, 50) }}">
                   <a class="link-title" target="_blank" href="{{ $link->url }}">{{ $link->title }} <span class="link-url">({{str_limit($link->url, 50)}})</span></a> <br/>
                   <span class="link-description">{{str_limit($link->description, 300)}}</span><br/>
-                  <span class="link-info">Added {{\Carbon\Carbon::parse($link->created_at)->diffForHumans()}} by <strong>{{$link->user()->first()->name}}</strong></span>
+                  <span class="link-info">
+                    Added {{\Carbon\Carbon::parse($link->created_at)->diffForHumans()}} by <strong>{{$link->user()->first()->name}}</strong>
+
+                    @if (Auth::id() == $link->user_id)
+                      {{ Form::hidden('id', $link->id) }}
+                      {{ Form::submit('Delete', ['class' => 'btn btn-link btn-sm']) }}
+                    @endif
+
+                </span>
+
                 </p>
+                {{ Form::close() }}
+
             </li>
             @endforeach
           </ul>

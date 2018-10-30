@@ -48,4 +48,15 @@ class LinksController extends Controller
 
     return redirect()->back();
   }
+
+  public function destroy(Request $request){
+    $link = Link::find($request->id);
+
+    if($link->user_id != Auth::id()){
+      return redirect()->back();
+    }
+
+    $link->delete();
+    return redirect()->back();
+  }
 }
