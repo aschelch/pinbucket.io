@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('newsletter:send')->weeklyOn(1, '9:00');
+        // Heroku is only calling this everyday at 9am. So we filter to execute only on mondays
+        if(Carbon::now()->isMonday()){
+            $schedule->command('newsletter:send')->everyMinute();
+        }
     }
 
     /**
