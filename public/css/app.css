@@ -83,3 +83,23 @@ img.user-picture {
 .browser-mockup > * {
   display: block;
 }
+
+
+html, body{
+  height: 100%;
+}
+
+#app{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+main{
+  flex: 1 0 auto;
+}
+
+footer{
+  margin-top:40px;
+  flex-shrink: 0;
+}

@@ -111,6 +111,23 @@
           @endif
             @yield('content')
         </main>
+
+        <footer>
+          <div class="container" style="padding:10px 0;">
+            <div class="row">
+              <div class="col-sm-7">
+                &copy; <?= date('Y');?> PinBucket.io.<br/> It's Open source <a href="https://github.com/aschelch/pinbucket.io" target="_blank"><span class="fui-github"></span></a> 
+
+              </div> <!-- /col-7 -->
+              <div class="col-sm-5 text-right">
+                Made with <span class="fui-heart" style="color:red"></span> by <a href="http://aschelch.fr" target="_blank">aschelch</a><br>
+                <a href="https://twitter.com/aschelch" target="_blank"><span class="fui-twitter"></span></a> 
+                <a href="https://github.com/aschelch" target="_blank"><span class="fui-github"></span></a> 
+            </div> 
+            </div>
+          </div>
+        </footer>
+
     </div>
 </body>
 </html>
