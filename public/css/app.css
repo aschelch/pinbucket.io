@@ -1,11 +1,11 @@
 img.user-picture {
     border-radius: 50%;
 }
-.link-row{
-  padding: 10px;
-}
 .link-row:nth-child(even){
   background-color: #ECF0F1;
+}
+.link-row{
+  padding: 4px 0;
 }
 .link-url{
   color:#7f8c8d;
@@ -23,11 +23,6 @@ img.user-picture {
   color: #7f8c8d;
   font-size: 0.9em;
   line-height: 17px;
-}
-.link-row img{
-  position:absolute;
-  top: 10px;
-  left:10px;
 }
 
 /* Browser mockup code
@@ -106,4 +101,12 @@ footer{
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
   color: #777;
+}
+
+form.link-destroy, form.link-destroy input[type=submit]{
+  display:inline;
+}
+
+.link-block{
+  margin-top: 10px;
 }

@@ -36,39 +36,33 @@
       </div>
 
 
-      <div class="row">
-          <div class="col-md-12">
+        @foreach($links as $link)
 
-          <ul class="list-unstyled link-list">
-            @foreach($links as $link)
-            <li class="link-row" style="position:relative">
-              {{ Form::open(['method' => 'DELETE', 'route' => 'link.destroy', 'class' => 'link-destroy' ]) }}
+        <div class="row link-row">
+          <div class="col-sm-3 col-md-2 text-center">
+            <a class="link-title" target="_blank" href="{{ $link->url }}"><img class="img-rounded img-responsive" src="{{ $link->preview }}"/></a>
+          </div>
+          <div class="col-sm-9 col-md-10 ">
+              <a class="link-title" target="_blank" href="{{ $link->url }}">{{ $link->title }} <span class="link-url">({{str_limit($link->url, 50)}})</span></a> <br/>
+              <span class="link-description">{{str_limit($link->description, 300)}}</span><br/>
+              <span class="link-info">
+                Added {{\Carbon\Carbon::parse($link->created_at)->diffForHumans()}} by <img class="user-picture" src="{{ Gravatar::src($link->user()->first()->email, 25) }}"/> <strong>{{$link->user()->first()->name}}</strong>
 
-                <p style="margin-left: 65px;">
-                  <img class="user-picture" src="{{ Gravatar::src($link->user()->first()->email, 50) }}">
-                  <a class="link-title" target="_blank" href="{{ $link->url }}">{{ $link->title }} <span class="link-url">({{str_limit($link->url, 50)}})</span></a> <br/>
-                  <span class="link-description">{{str_limit($link->description, 300)}}</span><br/>
-                  <span class="link-info">
-                    Added {{\Carbon\Carbon::parse($link->created_at)->diffForHumans()}} by <strong>{{$link->user()->first()->name}}</strong>
+                @if (Auth::id() == $link->user_id)
 
-                    @if (Auth::id() == $link->user_id)
-                      {{ Form::hidden('id', $link->id) }}
-                      {{ Form::submit('Delete', ['class' => 'btn btn-link btn-sm']) }}
-                    @endif
+                  {{ Form::open(['method' => 'DELETE', 'route' => 'link.destroy', 'class' => 'link-destroy' ]) }}
+                  {{ Form::hidden('id', $link->id) }}
+                  {{ Form::submit('Delete', ['class' => 'btn btn-link btn-sm']) }}
+                  {{ Form::close() }}
 
-                </span>
-
-                </p>
-                {{ Form::close() }}
-
-            </li>
-            @endforeach
-          </ul>
-
-          {{$links->render()}}
-
+                @endif
+              </span>
+          </div>
         </div>
-    </div>
+        @endforeach
+
+        {{$links->render()}}
+
     @endif
 </div>
 @endsection

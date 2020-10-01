@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessLink;
 use Illuminate\Http\Request;
 use Auth;
 use App\Link;
@@ -45,6 +46,8 @@ class LinksController extends Controller
     $link->user_id = Auth::id();
     $link->team_id = $request->team_id;
     $link->save();
+
+    ProcessLink::dispatch($link);
 
     return redirect()->back();
   }
