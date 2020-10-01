@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <h2>Your teams</h2>
             @foreach(Auth::user()->teams()->with('users')->get() as $team)
-            <h4>{{$team->name}} <small>(Code : {{$team->token}} <span class="fui-new copy" data-token="{{$team->token}}" onclick="copyToClipboard(this)" title="Copy team code"></span>)</small></h4>
+            <h4>{{$team->name}} <small>(Code : {{$team->token}} <span class="fui-exit copy" data-token="{{$team->token}}" onclick="copyToClipboard(this)" title="Copy team code"></span>)</small></h4>
             <p>
               @php ($members = $team->users()->orderBy('created_at')->get())
               @foreach($members as $member)
