@@ -11,7 +11,10 @@
             <p>
               Team code : <strong>{{$team->token}}</strong><br/>
               @php ($members = $team->users()->orderBy('name')->get())
-              Members ({{$members->count()}}) : {{$members->pluck('name')->implode(', ')}}
+              Members ({{$members->count()}}) :<br/>
+              @foreach($members as $member)
+                <img class="user-picture" src="{{ Gravatar::src($member->email, 25) }}" title="{{$member->name}}"> {{$member->name}}
+              @endforeach
             </p>
             @endforeach
 
