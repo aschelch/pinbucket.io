@@ -110,3 +110,7 @@ form.link-destroy, form.link-destroy input[type=submit]{
 .link-block{
   margin-top: 10px;
 }
+
+.copy{
+  cursor: pointer;
+}

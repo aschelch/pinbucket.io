@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <h2>Your teams</h2>
             @foreach(Auth::user()->teams()->with('users')->get() as $team)
-            <h4>{{$team->name}} <small>(Code : {{$team->token}})</small></h4>
+            <h4>{{$team->name}} <small>(Code : {{$team->token}} <span class="fui-new copy" data-token="{{$team->token}}" onclick="copyToClipboard(this)" title="Copy team code"></span>)</small></h4>
             <p>
               @php ($members = $team->users()->orderBy('created_at')->get())
               @foreach($members as $member)
@@ -22,4 +22,22 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+function copyToClipboard(span){
+  var el = document.createElement('textarea');  
+  el.value = span.dataset.token;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+  alert('Team code copied')
+};
+
+</script>
+
 @endsection

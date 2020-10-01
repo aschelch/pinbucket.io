@@ -39,10 +39,10 @@
         @foreach($links as $link)
 
         <div class="row link-row">
-          <div class="col-sm-3 col-md-2 text-center">
+          <div class="col-sm-3 col-md-2 text-center hidden-xs">
             <a class="link-title" target="_blank" href="{{ $link->url }}"><img class="img-rounded img-responsive" src="{{ $link->preview }}"/></a>
           </div>
-          <div class="col-sm-9 col-md-10 ">
+          <div class="col-sm-9 col-md-10 col-xs-12">
               <a class="link-title" target="_blank" href="{{ $link->url }}">{{ $link->title }} <span class="link-url">({{str_limit($link->url, 50)}})</span></a> <br/>
               <span class="link-description">{{str_limit($link->description, 300)}}</span><br/>
               <span class="link-info">
