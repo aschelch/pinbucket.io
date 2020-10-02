@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    @stack('head')
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -30,6 +31,7 @@
 
   gtag('config', 'UA-29420054-2');
 </script>
+
 
 </head>
 <body>

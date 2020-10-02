@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('head')
+<script>var teamId=<?php echo $team->id?>;</script>
+@endpush
+
 @section('content')
 
 <div class="container">
@@ -40,7 +44,7 @@
 
         <div class="row link-row">
           <div class="col-sm-3 col-md-2 text-center hidden-xs">
-            <a class="link-title" target="_blank" href="{{ $link->url }}"><img class="img-rounded img-responsive" src="{{ $link->preview }}"/></a>
+            <a class="link-title" target="_blank" href="{{ $link->url }}"><img class="img-rounded img-responsive" id="preview-link-{{ $link->id }}" src="{{ $link->preview }}"/></a>
           </div>
           <div class="col-sm-9 col-md-10 col-xs-12">
               <a class="link-title" target="_blank" href="{{ $link->url }}">{{ $link->title }} <span class="link-url">({{str_limit($link->url, 50)}})</span></a> <br/>

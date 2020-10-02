@@ -11,6 +11,12 @@
 |
 */
 
+use App\Team;
+
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('team.{teamId}', function ($user, $teamId) {
+    return Team::find($teamId)->users->contains($user->id);
 });
