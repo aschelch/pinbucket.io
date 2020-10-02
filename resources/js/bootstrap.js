@@ -60,7 +60,7 @@ window.Echo.private(`team.${teamId}`)
     .listen('LinkPreviewUpdated', (e) => {
         var img = document.getElementById('preview-link-' + e.link_id);
         if(img){
-            axios.get('link/'+e.link_id).then(function (response) {
+            axios.get('/link/'+e.link_id).then(function (response) {
                 img.setAttribute('src', response.data);
             });
         }
