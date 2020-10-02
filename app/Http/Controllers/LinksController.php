@@ -62,4 +62,13 @@ class LinksController extends Controller
     $link->delete();
     return redirect()->back();
   }
+
+  public function preview($linkId)
+  {
+    $link = Link::find($linkId);
+    if( ! $link->team->users->contains(Auth::id())){
+      return abort(404);
+    }
+    return $link->preview;
+  }
 }

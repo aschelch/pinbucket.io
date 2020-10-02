@@ -58,9 +58,11 @@ window.Echo = new Echo({
 if(teamId){
 window.Echo.private(`team.${teamId}`)
     .listen('LinkPreviewUpdated', (e) => {
-        var img = document.getElementById('preview-link-' + e.link.id);
+        var img = document.getElementById('preview-link-' + e.link_id);
         if(img){
-            img.setAttribute('src', e.link.preview);
+            axios.get('link/'+e.link_id).then(function (response) {
+                img.setAttribute('src', response.data);
+            });
         }
     });
 }

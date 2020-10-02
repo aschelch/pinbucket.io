@@ -30,3 +30,4 @@ Route::post('/join', 'TeamsController@joining');
 
 Route::post('/link', 'LinksController@create');
 Route::delete('/link', 'LinksController@destroy')->name('link.destroy');
+Route::get('/link/{link}', 'LinksController@preview');

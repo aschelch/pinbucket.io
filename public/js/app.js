@@ -14548,9 +14548,11 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo__["a" /* default */](
 
 if (teamId) {
     window.Echo.private('team.' + teamId).listen('LinkPreviewUpdated', function (e) {
-        var img = document.getElementById('preview-link-' + e.link.id);
+        var img = document.getElementById('preview-link-' + e.link_id);
         if (img) {
-            img.setAttribute('src', e.link.preview);
+            axios.get('link/' + e.link_id).then(function (response) {
+                img.setAttribute('src', response.data);
+            });
         }
     });
 }

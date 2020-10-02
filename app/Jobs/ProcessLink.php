@@ -48,7 +48,7 @@ class ProcessLink implements ShouldQueue
         $this->link->preview = $preview;
         $this->link->save();
 
-        event(new LinkPreviewUpdated($this->link));
+        event(new LinkPreviewUpdated($this->link->id, $this->link->team_id));
     }
 
     /**
@@ -63,6 +63,6 @@ class ProcessLink implements ShouldQueue
         $this->link->preview = $preview;
         $this->link->save();
 
-        event(new LinkPreviewUpdated($this->link));
+        event(new LinkPreviewUpdated($this->link->id, $this->link->team_id));
     }
 }

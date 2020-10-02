@@ -15,21 +15,18 @@ class LinkPreviewUpdated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Undocumented variable
-     *
-     * @var App\Link
-     */
-    public $link;
+    public $link_id;
+    public $team_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Link $link)
+    public function __construct($link_id, $team_id)
     {
-        $this->link = $link;
+        $this->link_id = $link_id;
+        $this->team_id = $team_id;
     }
 
     /**
@@ -39,6 +36,6 @@ class LinkPreviewUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('team.' . $this->link->team_id);
+        return new PrivateChannel('team.' . $this->team_id);
     }
 }
