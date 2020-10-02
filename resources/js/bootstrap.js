@@ -48,15 +48,15 @@ import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    encrypted: true
-});
-
 if(teamId){
-window.Echo.private(`team.${teamId}`)
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: process.env.MIX_PUSHER_APP_KEY,
+        cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+        encrypted: true
+    });
+
+    window.Echo.private(`team.${teamId}`)
     .listen('LinkPreviewUpdated', (e) => {
         var img = document.getElementById('preview-link-' + e.link_id);
         if(img){

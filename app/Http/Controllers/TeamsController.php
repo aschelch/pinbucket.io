@@ -52,4 +52,14 @@ class TeamsController extends Controller
       return view('teams.join');
   }
 
+  public function quit($teamId){
+    $team = Team::find($teamId);
+    if(empty($team)){
+      return redirect('home');
+    }
+
+    $team->users()->detach(Auth::id());
+    return redirect('home');
+  }
+
 }

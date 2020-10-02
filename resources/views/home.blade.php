@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @push('head')
+
+@if (!empty($team))
 <script>var teamId=<?php echo $team->id?>;</script>
+@endif
+
 @endpush
 
 @section('content')
@@ -56,7 +60,7 @@
 
                   {{ Form::open(['method' => 'DELETE', 'route' => 'link.destroy', 'class' => 'link-destroy' ]) }}
                   {{ Form::hidden('id', $link->id) }}
-                  {{ Form::submit('Delete', ['class' => 'btn btn-link btn-sm']) }}
+                  {{ Form::submit('Delete', ['class' => 'btn btn-link btn-sm', 'onclick' => "return confirm('Are you sure you want to delete this link?');"]) }}
                   {{ Form::close() }}
 
                 @endif
