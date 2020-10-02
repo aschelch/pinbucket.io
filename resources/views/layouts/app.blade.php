@@ -48,7 +48,7 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
               </div>
-              <div class="navbar-collapse collapse">
+              <div class="navbar-collapse navbar-inverse collapse">
                 <ul class="nav navbar-nav">
                   @auth
                   @foreach(Auth::user()->teams as $userTeam)

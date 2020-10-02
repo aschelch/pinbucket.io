@@ -45,11 +45,16 @@ class TeamsController extends Controller
   public function joining(Request $request){
       $team = Team::where('token', $request->token)->first();
 
-      if(!empty($team)){
-        $team->users()->attach(Auth::id());
-        return redirect('home');
+      if(empty($team)){
+        return view('teams.join');
       }
-      return view('teams.join');
+
+      if($team->users->contains(Auth::id())){
+        return view('teams.join');
+      }
+
+      $team->users()->attach(Auth::id());
+      return redirect('home');
   }
 
   public function quit($teamId){
