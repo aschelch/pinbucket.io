@@ -124,7 +124,8 @@
               <div class="col-sm-5 text-right">
                 Made with <span class="fui-heart" style="color:red"></span> by <a href="http://aschelch.fr" target="_blank">aschelch</a><br>
                 <a href="https://twitter.com/aschelch" target="_blank"><span class="fui-twitter"></span></a> 
-                <a href="https://github.com/aschelch" target="_blank"><span class="fui-github"></span></a> 
+                <a href="https://github.com/aschelch" target="_blank"><span class="fui-github"></span></a>
+                <a href="https://www.linkedin.com/in/aur%C3%A9lien-schelcher-3247172b"><span class="fui-linkedin"></span></a>
             </div> 
             </div>
           </div>

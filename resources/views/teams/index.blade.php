@@ -14,12 +14,12 @@
 
             @foreach(Auth::user()->teams()->with('users')->get() as $team)
             <h4>{{$team->name}} <small>(Code : {{$team->token}} <span class="fui-exit copy" data-token="{{$team->token}}" onclick="copyToClipboard(this)" title="Copy team code"></span>)</small></h4>
-            <p>
+            <ul class="list-inline">
               @php ($members = $team->users()->orderBy('created_at')->get())
               @foreach($members as $member)
-                <img class="user-picture" src="{{ Gravatar::src($member->email, 40) }}" title="{{$member->name}}">
+                <li><img class="user-picture" src="{{ Gravatar::src($member->email, 40) }}" title="{{$member->name}}"> {{$member->name}}</li>
               @endforeach
-            </p>
+            </ul>
             <p><a class="btn btn-xs btn-default" href="{{ route('team.quit', $team->id) }}" role="button" onclick="return confirm('Are you sure you want to quit this team?');">Quit the team</a><p>
             @endforeach
         </div>
