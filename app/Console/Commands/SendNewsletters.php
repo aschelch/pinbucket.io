@@ -57,7 +57,8 @@ class SendNewsletters extends Command
             }
 
             $users = $team->users()->get();
-            foreach ($users as $user) {
+            foreach ($users as $user) {            
+                var_dump($user);
                 Mail::to($user)->send(new WeeklyNewsletter($team, $links));
             }
 
