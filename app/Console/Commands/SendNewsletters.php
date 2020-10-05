@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use \App\Team;
 use Carbon\Carbon;
 use \App\Mail\WeeklyNewsletter;
+use Exception;
 use Illuminate\Support\Facades\Mail;
 
 class SendNewsletters extends Command
@@ -58,8 +59,11 @@ class SendNewsletters extends Command
 
             $users = $team->users()->get();
             foreach ($users as $user) {            
-                var_dump($user);
-                Mail::to($user)->send(new WeeklyNewsletter($team, $links));
+                try{
+                    Mail::to($user)->send(new WeeklyNewsletter($team, $links));
+                }catch(Exception $e){
+                    //Do something..
+                }
             }
 
             $bar->advance();
