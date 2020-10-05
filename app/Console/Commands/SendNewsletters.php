@@ -58,12 +58,8 @@ class SendNewsletters extends Command
             }
 
             $users = $team->users()->get();
-            foreach ($users as $user) {            
-                try{
-                    Mail::to($user)->send(new WeeklyNewsletter($team, $links));
-                }catch(Exception $e){
-                    //Do something..
-                }
+            foreach ($users as $user) {  
+                Mail::to($user)->send(new WeeklyNewsletter($team, $links));
             }
 
             $bar->advance();
