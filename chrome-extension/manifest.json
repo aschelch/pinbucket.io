@@ -4,7 +4,7 @@
     "description": "Share tech articles with your teammates.",
     "manifest_version": 2,
     "permissions": [
-        "tabs", "storage", "https://www.pinbucket.io/*", "http://127.0.0.1:8000/*"
+        "tabs", "storage", "https://www.pinbucket.io/*"
     ],
     "browser_action": {
         "default_popup": "popup.html",
