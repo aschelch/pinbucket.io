@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="flat-ui.min.css" rel="stylesheet">
+    <link href="popup.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <nav role="navigation" class="navbar navbar-inverse navbar-static-top">
+      <a href="https://www.pinbucket.io" class="navbar-brand" id="home">PinBucket.io</a>
+      <div class="navbar-collapse">
+        
+        <p class="navbar-text navbar-right"><span class="fui-time" id="loading"></span> <a href="https://www.pinbucket.io" id="username">...</a></p>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+        
+          <div class="form-group">
+            <select name="team" id="teams" class="form-control"></select>
+          </div>
+          
+          <div class="form-group">
+            <input type="text" id="link" value="" placeholder="https://" class="form-control" />
+          </div>
+          
+          <div class="form-group">
+            <button id="share" disabled="disabled" class="btn btn-block btn-lg btn-primary">Preparing the link...</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <script src="popup.js"></script>
+  </body>
+</html>

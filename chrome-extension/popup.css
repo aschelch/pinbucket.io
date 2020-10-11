@@ -1,0 +1,9 @@
+html{
+    width: 400px;
+}
+
+
+.navbar-right{
+    font-weight: bold;
+    text-align: right;
+}
