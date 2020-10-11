@@ -53,7 +53,7 @@
                   @auth
                   @foreach(Auth::user()->teams as $userTeam)
                   <li class="nav-item {{ (isset($team) && $userTeam->id == $team->id) ? 'active':'' }}">
-                      <a class="nav-link" href="{{ route('home', $userTeam->id) }}">{{ $userTeam->name }}</a>
+                      <a class="nav-link" href="{{ route('home', $userTeam->id) }}" data-team-id="{{ $userTeam->id }}">{{ $userTeam->name }}</a>
                   </li>
                   @endforeach
                   @endauth

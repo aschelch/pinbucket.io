@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home/{team?}', 'HomeController@index')->name('home');
+Route::get('/home/{team?}', 'HomeController@index')->name('home')->middleware('cors');
 
 Route::get('/teams', 'TeamsController@index')->name('team.index');
 Route::get('/team', 'TeamsController@add')->name('team.add');
