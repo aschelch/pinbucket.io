@@ -62,6 +62,11 @@
                   @endauth
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://chrome.google.com/webstore/detail/pinbucketio/mpplanibjojjmpgljmaionncaadmpamf?hl=fr" title="Install Chrome extension">
+                      <img src="/img/icons/svg/google-chrome-white.svg" alt="Chrome extension" style="width:20px">
+                    </a>
+                  </li>
                   <!-- Authentication Links -->
                   @guest
                       <li class="nav-item">
