@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <div class="row ">
-        <div class="col-md-12">
+        <div class="col-md-9">
           <h2>Your teams</h2>
 
             <p>
@@ -22,6 +22,16 @@
             </ul>
             <p><a class="btn btn-xs btn-default" href="{{ route('team.quit', $team->id) }}" role="button" onclick="return confirm('Are you sure you want to quit this team?');">Quit the team</a><p>
             @endforeach
+        </div>
+        <div class="col-md-3">
+
+          <div class="tile">
+            <img src="/img/icons/svg/ribbon.svg" alt="ribbon" class="tile-hot-ribbon">
+            <img src="/img/icons/svg/google-chrome.svg" alt="Chrome extension" class="tile-image">
+            <h3 class="tile-title">Chrome extension</h3>
+            <p>Share link quickly and easily using the PinBucket chrome extension</p>
+            <a class="btn btn-primary btn-large btn-block" target="_blank" href="https://chrome.google.com/webstore/detail/pinbucketio/mpplanibjojjmpgljmaionncaadmpamf?hl=fr">Install Chrome extension</a>
+          </div>
         </div>
     </div>
 </div>

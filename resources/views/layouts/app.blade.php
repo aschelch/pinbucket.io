@@ -121,7 +121,8 @@
           <div class="container" style="padding:10px 0;">
             <div class="row">
               <div class="col-sm-7">
-                &copy; <?= date('Y');?> PinBucket.io.<br/> It's Open source <a href="https://github.com/aschelch/pinbucket.io" target="_blank"><span class="fui-github"></span></a> 
+                &copy; <?= date('Y');?> PinBucket.io.<br/>
+                It's Open source <a href="https://github.com/aschelch/pinbucket.io" target="_blank"><span class="fui-github"></span></a> - Get <a href="https://chrome.google.com/webstore/detail/pinbucketio/mpplanibjojjmpgljmaionncaadmpamf?hl=fr">Chrome extension</a>
 
               </div> <!-- /col-7 -->
               <div class="col-sm-5 text-right">

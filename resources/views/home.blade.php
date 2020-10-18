@@ -12,11 +12,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
+
 
           @if (Auth::user()->teams->isEmpty())
+            <p><img src="/img/team.svg" alt="" class="img-rounded img-responsive center-block" style="max-width:400px"/></p>
             <p>To start sharing articles or blog post, you have to create a team or join one !</p>
-            <p><a class="btn btn-hg btn-primary" href="{{ route('team.add') }}" role="button">Create a new Team</a> or <a class="btn btn-md btn-primary" href="{{ route('team.join') }}" role="button">Join a Team</a><p>
+            <p><a class="btn btn-hg btn-primary" href="{{ route('team.add') }}" role="button">Create a new Team</a> or <a class="btn btn-hg btn-primary" href="{{ route('team.join') }}" role="button">Join a Team</a><p>
           @endif
 
         </div>
@@ -43,6 +45,10 @@
         </form>
       </div>
 
+        @if($links->isEmpty())
+        <img src="/img/bookmarks.svg" class="img-rounded img-responsive center-block mt-2" style="max-width:400px"/>
+        <p class="text-center">Nothing shared yet, go ahead !</p>
+        @endif
 
         @foreach($links as $link)
 
