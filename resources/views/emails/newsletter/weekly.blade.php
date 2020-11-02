@@ -6,6 +6,8 @@ Let's see what your teamates added last week :
 @foreach($links as $link)
 **[{{$link->title}}]({{$link->url}})**  
 
+<img src="{{$link->preview}}" alt="">
+
 {{str_limit($link->description, 300)}}  
 
 _Added {{\Carbon\Carbon::parse($link->created_at)->diffForHumans()}} by {{$link->user()->first()->name}}_  
