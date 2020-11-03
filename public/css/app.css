@@ -114,3 +114,8 @@ form.link-destroy, form.link-destroy input[type=submit]{
 .copy{
   cursor: pointer;
 }
+
+.bmc-btn:hover{
+  color:white;
+  background-color: #48c9b0 !important;
+}

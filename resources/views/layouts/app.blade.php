@@ -125,12 +125,17 @@
         <footer>
           <div class="container" style="padding:10px 0;">
             <div class="row">
-              <div class="col-sm-7">
+              <div class="col-sm-4">
                 &copy; <?= date('Y');?> PinBucket.io.<br/>
                 It's Open source <a href="https://github.com/aschelch/pinbucket.io" target="_blank"><span class="fui-github"></span></a> - Get <a href="https://chrome.google.com/webstore/detail/pinbucketio/mpplanibjojjmpgljmaionncaadmpamf?hl=fr">Chrome extension</a>
 
               </div> <!-- /col-7 -->
-              <div class="col-sm-5 text-right">
+
+              <div class="col-sm-4 text-center">
+                <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="aschelch" data-color="#1abc9c" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#ffffff" ></script>
+              </div>
+
+              <div class="col-sm-4 text-right">
                 Made with <span class="fui-heart" style="color:red"></span> by <a href="http://aschelch.fr" target="_blank">aschelch</a><br>
                 <a href="https://twitter.com/aschelch" target="_blank"><span class="fui-twitter"></span></a> 
                 <a href="https://github.com/aschelch" target="_blank"><span class="fui-github"></span></a>
