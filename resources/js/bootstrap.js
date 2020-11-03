@@ -48,7 +48,7 @@ import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
-if(teamId){
+if(typeof teamId !== 'undefined'){
     window.Echo = new Echo({
         broadcaster: 'pusher',
         key: process.env.MIX_PUSHER_APP_KEY,
