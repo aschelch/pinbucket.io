@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use App\Team;
+use App\User;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,4 +43,18 @@ Route::middleware('auth:api')->get('/links/{teamId}', function (Request $request
     }
     $links = $team->links()->latest('created_at')->paginate(50);
     return $links;
+});
+
+Route::middleware('api')->post('/webhook', function (Request $request) {
+    $event = $request->input('type');
+    switch($event){
+        case 'payment_intent.succeeded':
+            $email = $request->input("data.object.charges.data.0.billing_details.email");
+
+            break;
+        default:
+            Log::warning('Unhandled event type '.$event);
+            break; 
+    }
+    return ['received'=>true];
 });

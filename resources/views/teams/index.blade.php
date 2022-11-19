@@ -24,7 +24,6 @@
             @endforeach
         </div>
         <div class="col-md-3">
-
           <div class="tile">
             <img src="/img/icons/svg/ribbon.svg" alt="ribbon" class="tile-hot-ribbon">
             <img src="/img/icons/svg/google-chrome.svg" alt="Chrome extension" class="tile-image">
@@ -32,6 +31,10 @@
             <p>Share link quickly and easily using the PinBucket chrome extension</p>
             <a class="btn btn-primary btn-large btn-block" target="_blank" href="https://chrome.google.com/webstore/detail/pinbucketio/mpplanibjojjmpgljmaionncaadmpamf?hl=fr">Install Chrome extension</a>
           </div>
+
+          <h4>Your plan</h4>
+          <p>Your current plan is <b>{{Auth::user()->plan}}</b><br/>
+          <a href="{{ route('pricing') }}">Change my plan</a></p>
         </div>
     </div>
 </div>

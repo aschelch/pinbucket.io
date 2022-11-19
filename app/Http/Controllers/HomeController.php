@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -44,4 +44,14 @@ class HomeController extends Controller
       }
       return view('home', compact('team', 'links'));
     }
+
+    /**
+     * Show pricing page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pricing(){
+      return view('pricing');
+    }
+
 }

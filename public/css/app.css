@@ -119,3 +119,16 @@ form.link-destroy, form.link-destroy input[type=submit]{
   color:white;
   background-color: #48c9b0 !important;
 }
+
+.pricing .plan{
+  background-color: #f7f9fa;
+  border-color: #e9ecef
+}
+
+.pricing .plans{
+  margin-top: 1em;
+}
+
+.pricing .plan a{
+  margin-top: 1em;
+}
