@@ -1,48 +1,34 @@
-##  Password Reset Controller Documentation 
+## Password Reset Controller Documentation
 
-**Table of Contents:**
+**Table of Contents**
 
-* [1. Overview](#1-overview) 
-* [2. Usage](#2-usage) 
-* [3. Methods](#3-methods)
-    * [3.1 `__construct()`](#31-construct)
+* [Overview](#overview)
+* [Class Structure](#class-structure)
+* [Methods](#methods)
 
+### Overview
 
-### 1. Overview 
+This controller handles requests related to password reset. It leverages the `ResetsPasswords` trait to streamline the password reset process. 
 
-This controller handles password reset requests for the application. It leverages the `ResetsPasswords` trait from the Laravel framework to provide the core functionality for password resets. 
+### Class Structure
 
-### 2. Usage
+**Name:** `ResetPasswordController`
 
-This controller is used by the application to handle password reset requests. Users can initiate a password reset by requesting a password reset link via the application's password reset functionality. This controller then handles the verification of the reset link and the subsequent password update.
+**Inheritance:** `Controller`
 
-### 3. Methods 
+**Traits:** `ResetsPasswords`
 
-#### 3.1 `__construct()`
+**Purpose:** Handles password reset requests, allowing users to change their passwords.
 
-This method is the constructor for the `ResetPasswordController` class. It sets up the middleware for the controller.
+**Middleware:** `guest`
 
-| Parameter | Type | Description |
-|---|---|---|
-| None |  |  | 
+**Note:** This class is designed to handle password reset requests and can be customized as needed.
 
-**Functionality:**
+### Methods
 
-* **`$this->middleware('guest');`** : This line ensures that only unauthenticated users can access the password reset functionality. 
+| Method Name | Description |
+|---|---|
+| `__construct()` |  The constructor initializes the middleware to ensure only guest users can access this controller. |
+| `redirectTo` |  Specifies the redirect URL after a successful password reset. This is set to `/home` by default. | 
 
-**Example Usage:**
-
-```php 
-// This is an example usage, the actual implementation is done by the framework.
-$resetPasswordController = new ResetPasswordController(); 
-```
-
-**Return Value:**
-
-* None
-
-**Notes:**
-
-* This constructor is automatically called when the controller is instantiated. 
-
-**Emojis:** 🔐🔑
+**Note:** The `ResetsPasswords` trait provides methods for handling password reset requests, including sending reset emails, validating credentials, and updating passwords. These methods are not explicitly defined in this controller but are available for use. 

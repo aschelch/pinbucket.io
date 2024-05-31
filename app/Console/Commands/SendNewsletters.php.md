@@ -1,99 +1,42 @@
-##  Send Newsletters Command Documentation 
-<br>
+## SendNewsletters Command Documentation
 
-**Table of Contents**
+**Table of Contents:**
 
-* [Command Overview](#command-overview)
-* [Command Signature and Description](#command-signature-and-description)
-* [Command Logic](#command-logic)
-    * [Retrieving Teams and Progress Bar](#retrieving-teams-and-progress-bar)
-    * [Iterating Through Teams](#iterating-through-teams)
-    * [Finding Links for the Week](#finding-links-for-the-week)
-    * [Sending Emails](#sending-emails)
-    * [Progress Bar Updates](#progress-bar-updates)
-* [Code Snippet](#code-snippet)
+* [1. Overview](#1-overview)
+* [2. Command Signature and Description](#2-command-signature-and-description)
+* [3. Code Walkthrough](#3-code-walkthrough)
+    * [3.1. Constructor](#31-constructor)
+    * [3.2. Handle Method](#32-handle-method)
 
-<br>
+## 1. Overview
 
-### Command Overview 
-This command sends a weekly newsletter to all users in each team. The newsletter includes links that have been added to the team within the past week. 
+This command is responsible for sending weekly newsletters to each team's users. The newsletter includes links created within the last week. 
 
-<br>
+## 2. Command Signature and Description
 
-### Command Signature and Description
-* **Signature:** `newsletter:send`
-* **Description:** Sends team's weekly newsletter
+| Attribute | Value |
+|---|---|
+| Signature | `newsletter:send` |
+| Description | Send team's weekly newsletter |
 
-<br>
+## 3. Code Walkthrough
 
-### Command Logic
+### 3.1 Constructor
 
-#### Retrieving Teams and Progress Bar
-1. **Retrieve all teams:**  The command fetches all teams from the database using `Team::all()`.
-2. **Initialize progress bar:** A progress bar is created using `$this->output->createProgressBar()` with a total number of steps equal to the count of teams. The progress bar is then started using `$bar->start()`.
+The constructor initializes the parent command class.
 
-#### Iterating Through Teams
-1. **Loop through teams:** The code iterates through each team retrieved in the previous step.
-
-#### Finding Links for the Week
-1. **Calculate last Monday:** The code calculates the date of the last Monday using `Carbon::parse("last monday")->toDateString()`.
-2. **Retrieve team links:** The code queries for all links associated with the current team that were created on or after last Monday.
-3. **Check for links:** If no links are found for the team, the progress bar is advanced and the loop continues to the next team.
-
-#### Sending Emails
-1. **Retrieve team users:** The code retrieves all users associated with the current team.
-2. **Send email to each user:** For each user in the team, the code sends an email using `Mail::to($user)->send(new WeeklyNewsletter($team, $links))`. The `WeeklyNewsletter` class is responsible for creating the email content using the team and its links.
-
-#### Progress Bar Updates
-1. **Advance progress bar:** After each team is processed, the progress bar is advanced using `$bar->advance()`.
-2. **Finish progress bar:** When all teams have been processed, the progress bar is finished using `$bar->finish()`.
-
-<br>
-
-### Code Snippet
 ```php
-<?php
-
-namespace App\Console\Commands;
-
-use Illuminate\Console\Command;
-use App\Team;
-use Carbon\Carbon;
-use App\Mail\WeeklyNewsletter;
-use Exception;
-use Illuminate\Support\Facades\Mail;
-
-class SendNewsletters extends Command
-{
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'newsletter:send';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Send team\'s weekly newsletter';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         parent::__construct();
     }
+```
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+### 3.2 Handle Method
+
+The handle method retrieves all teams and iterates through them. For each team, it gets all links created since the last Monday. If there are no links, the process skips to the next team. Otherwise, it retrieves all users associated with the team and sends a `WeeklyNewsletter` email to each user.
+
+```php
     public function handle()
     {
         $teams = Team::all();
@@ -102,17 +45,16 @@ class SendNewsletters extends Command
         $bar->start();
 
         foreach ($teams as $team) {
-
             $lastMonday = Carbon::parse("last monday")->toDateString();
             $links = $team->links()->where('created_at', '>=', $lastMonday)->get();
 
-            if (count($links) == 0) {
+            if(count($links) == 0){
                 $bar->advance();
                 continue;
             }
 
             $users = $team->users()->get();
-            foreach ($users as $user) {
+            foreach ($users as $user) {  
                 Mail::to($user)->send(new WeeklyNewsletter($team, $links));
             }
 
@@ -121,5 +63,4 @@ class SendNewsletters extends Command
 
         $bar->finish();
     }
-}
 ```

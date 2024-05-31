@@ -1,40 +1,47 @@
-## ForgotPasswordController Documentation
+# ForgotPasswordController Documentation
 
-**Table of Contents:**
+## Table of Contents
 
-* [1. Overview](#1-overview)
-* [2. Class Structure](#2-class-structure)
-* [3. Methods](#3-methods)
+1. [Overview](#overview)
+2. [Class Structure](#class-structure)
+3. [Methods](#methods)
 
-### 1. Overview
+## Overview 
 
-This file contains the `ForgotPasswordController` class, which is responsible for handling password reset email requests. 
+This controller is responsible for handling password reset emails. It uses the `SendsPasswordResetEmails` trait to facilitate sending these notifications to users.
 
-### 2. Class Structure
-
-The `ForgotPasswordController` class inherits from the `Controller` class and utilizes the `SendsPasswordResetEmails` trait. This trait provides functionality for sending password reset emails to users.
+## Class Structure
 
 | Element | Description |
 |---|---|
+| `namespace App\\Http\\Controllers\\Auth;` | Specifies the namespace for the controller. |
 | `use App\\Http\\Controllers\\Controller;` | Imports the `Controller` class from the `App\\Http\\Controllers` namespace. |
 | `use Illuminate\\Foundation\\Auth\\SendsPasswordResetEmails;` | Imports the `SendsPasswordResetEmails` trait from the `Illuminate\\Foundation\\Auth` namespace. |
-| `class ForgotPasswordController extends Controller` | Defines the `ForgotPasswordController` class, extending the `Controller` class. |
-| `use SendsPasswordResetEmails;` | Includes the `SendsPasswordResetEmails` trait, providing functionality for sending password reset emails. |
+| `class ForgotPasswordController extends Controller` | Defines the `ForgotPasswordController` class, which extends the `Controller` class. |
+| `use SendsPasswordResetEmails;` | Includes the `SendsPasswordResetEmails` trait, which provides methods for sending password reset emails. |
+| `public function __construct()` | The constructor method for the controller.  |
+| `$this->middleware('guest');` |  Ensures that only guest users can access this controller. |
 
-### 3. Methods
+## Methods 
 
-#### `__construct()`
+### `__construct()`
 
-* **Description:** This method is the constructor for the `ForgotPasswordController` class. It sets up the middleware for the controller.
-* **Parameters:** None
-* **Return Value:** `void`
-* **Code:**
+This method is the constructor for the controller. It initializes the middleware that ensures only guest users can access this controller.
+
+| Parameter | Description |
+|---|---|
+| `none` | This method does not take any parameters. |
+
+| Return Value | Description |
+|---|---|
+| `void` | This method does not return a value. |
+
+**Example Usage:**
 
 ```php
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+// No example usage is necessary as this is a constructor method.
 ```
 
-* **Explanation:** The `$this->middleware('guest');` line ensures that only unauthenticated users can access this controller. 
+**Notes:**
+
+This method ensures that users who are already logged in cannot access this controller, as they are not required to reset their passwords. 

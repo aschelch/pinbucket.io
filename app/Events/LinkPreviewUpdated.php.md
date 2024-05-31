@@ -3,43 +3,40 @@
 ### Table of Contents
 
 * [Introduction](#introduction)
-* [Event Usage](#event-usage)
-    * [Event Attributes](#event-attributes)
-    * [Broadcasting Channels](#broadcasting-channels)
-    * [Event Dispatching](#event-dispatching)
+* [Event Structure](#event-structure)
+* [Event Broadcasting](#event-broadcasting)
 
-### Introduction 
+### Introduction
 
-This document provides a detailed overview of the `LinkPreviewUpdated` event within the application. This event is triggered when the preview of a link is updated, notifying relevant parties of the change.
+This file defines the `LinkPreviewUpdated` event, which is triggered when the preview of a link is updated.
 
-### Event Usage 
+### Event Structure
 
-The `LinkPreviewUpdated` event is designed to facilitate communication between different parts of the application when the preview of a link is modified. It utilizes Laravel's event broadcasting system to notify interested listeners about the update.
+The `LinkPreviewUpdated` event class is responsible for handling the logic related to a link preview update.
 
-#### Event Attributes
-
-The `LinkPreviewUpdated` event carries the following attributes:
-
-| Attribute | Type | Description |
+| Property | Type | Description |
 |---|---|---|
-| `link_id` | Integer | The ID of the link whose preview was updated. |
-| `team_id` | Integer | The ID of the team associated with the link. |
+| `link_id` | `int` | The ID of the link whose preview was updated. |
+| `team_id` | `int` | The ID of the team the link belongs to. |
 
-#### Broadcasting Channels
+**Constructor:**
 
-The `LinkPreviewUpdated` event broadcasts on a private channel specific to the team associated with the updated link. This ensures that only users within the relevant team receive the notification.
+```php
+public function __construct($link_id, $team_id)
+```
+
+The constructor initializes the `link_id` and `team_id` properties with the provided values.
+
+### Event Broadcasting
+
+The `LinkPreviewUpdated` event broadcasts on a private channel specific to the team the link belongs to.
+
+**Broadcast Channel:**
 
 ```php
 return new PrivateChannel('team.' . $this->team_id);
 ```
 
-#### Event Dispatching
+This ensures that only users within the specified team will receive notifications about the link preview update. 
 
-To dispatch the `LinkPreviewUpdated` event, use the following code:
-
-```php
-// Assume $link_id and $team_id are available variables
-event(new LinkPreviewUpdated($link_id, $team_id));
-```
-
-This will broadcast the event on the designated private channel, notifying listeners within the team about the updated link preview.
+The event broadcasting functionality allows for real-time updates and communication between different parts of the application, enabling a seamless user experience. 

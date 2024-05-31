@@ -1,46 +1,61 @@
 ## Email Verification Controller Documentation
 
-**Table of Contents**
+### Table of Contents
+- [Overview](#overview)
+- [Class Structure](#class-structure)
+- [Methods](#methods)
 
-* [Introduction](#introduction)
-* [Class Structure](#class-structure)
-* [Methods](#methods)
-    * [__construct()](#construct)
+### Overview 
 
-## Introduction 
+This controller is responsible for managing email verification for users who have recently registered with the application. It also allows users to resend verification emails if they did not receive the original email.
 
-This controller is responsible for handling email verification for users who recently registered with the application. It also allows users to resend verification emails if they did not receive the original email. 
-
-## Class Structure
+### Class Structure
 
 | Element | Description |
 |---|---|
-| **Namespace:** | `App\Http\Controllers\Auth` |
-| **Class:** | `VerificationController` |
-| **Traits:** | `VerifiesEmails` |
-| **Properties:** |
-    | `redirectTo`: string |  The URL where users are redirected after successful verification. Defaults to `/home`. |
-| **Methods:** |  |
+| `namespace App\\Http\\Controllers\\Auth;` | Defines the namespace for the controller within the application's structure. |
+| `use Illuminate\\Http\\Request;` | Imports the `Request` class for handling HTTP requests. |
+| `use Illuminate\\Routing\\Controller;` | Imports the base `Controller` class from the Laravel framework. |
+| `use Illuminate\\Foundation\\Auth\\VerifiesEmails;` | Imports the `VerifiesEmails` trait for email verification functionality. |
+| `class VerificationController extends Controller` | Defines the `VerificationController` class extending the `Controller` class. |
 
-## Methods
+### Methods
 
-### `__construct()`
+#### `__construct()`
 
-This method is called when a new instance of the controller is created. It defines the middleware that should be applied to the controller's methods.
+**Description:** 
 
-**Middleware:**
-
-* **`auth`**:  Ensures that only authenticated users can access the controller's methods. 🔐
-* **`signed`**: Applies only to the `verify` method. It ensures that the verification link is valid and has not been tampered with. 🔒
-* **`throttle:6,1`**:  Applies to both the `verify` and `resend` methods. It limits the number of requests to these methods to 6 per minute. This helps prevent abuse and ensures the system remains responsive. ⏳
+- This method is the constructor for the `VerificationController`. 
+- It sets up middleware to ensure the user is authenticated and that the verification link is signed. 
+- It also implements a throttle middleware to limit the number of verification and resend attempts to six per minute.
 
 **Code:**
 
 ```php
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
-    }
+public function __construct()
+{
+    $this->middleware('auth');
+    $this->middleware('signed')->only('verify');
+    $this->middleware('throttle:6,1')->only('verify', 'resend');
+}
 ```
+
+**Middleware:**
+
+| Middleware | Description |
+|---|---|
+| `auth` | Ensures that the user is authenticated before accessing the controller. |
+| `signed` | Ensures that the verification link is signed and valid. |
+| `throttle:6,1` | Limits the number of verification and resend attempts to six per minute. | 
+
+#### `redirectTo` Property
+
+**Description:** 
+
+- This property defines the URL to redirect the user to after successful verification.
+
+**Code:**
+
+```php
+protected $redirectTo = '/home';
+``` 
